@@ -1,0 +1,14 @@
+[
+    {
+      "titulo": "Imagen 1",
+      "url": "/imagenes/aleatoria1.jpeg"
+    },
+    {
+      "titulo": "Imagen 2",
+      "url": "/imagenes/aleatoria2.jpeg"
+    },
+    {
+      "titulo": "Imagen 3",
+      "url": "/imagenes/aleatorio3.jpeg"
+    }
+  ]
