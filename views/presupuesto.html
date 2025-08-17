@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presupuesto</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header>
+    <h1>Formulario de Presupuesto</h1>
+    <nav>
+        <a href="/index.html">Inicio</a>
+        <a href="/views/galeria.html">Galería</a>
+        <a href="/views/presupuesto.html" class="active">Presupuesto</a>
+        <a href="/views/contacto.html">Contacto</a>
+    </nav>
+</header>
+
+<main>
+    <form id="formularioPresupuesto" onsubmit="return validarFormulario()">
+        <fieldset>
+            <legend>Datos de Contacto</legend>
+
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" maxlength="15" required>
+
+            <label for="apellidos">Apellidos:</label>
+            <input type="text" id="apellidos" name="apellidos" maxlength="40" required>
+
+            <label for="telefono">Teléfono de Contacto:</label>
+            <input type="text" id="telefono" name="telefono" maxlength="9" required>
+
+            <label for="correo">Correo Electrónico:</label>
+            <input type="email" id="correo" name="correo" required>
+        </fieldset>
+
+        <fieldset>
+            <legend>Opciones de Presupuesto</legend>
+
+            <label for="producto">Producto:</label>
+            <select id="producto" name="producto" required>
+                <option value="">--Seleccione un producto--</option>
+                <option value="1000">Sitio Web Básico ($1000)</option>
+                <option value="2000">Tienda Online ($2000)</option>
+                <option value="3000">Aplicación Móvil ($3000)</option>
+            </select>
+
+            <label for="plazo">Plazo de entrega (en días):</label>
+            <input type="number" id="plazo" name="plazo" min="1" required>
+
+            <fieldset>
+                <legend>Extras:</legend>
+                <input type="checkbox" id="seo" value="200">
+                <label for="seo">Optimización SEO (+$200)</label><br>
+
+                <input type="checkbox" id="mantenimiento" value="300">
+                <label for="mantenimiento">Mantenimiento Web (+$300)</label><br>
+
+                <input type="checkbox" id="hosting" value="150">
+                <label for="hosting">Hosting Anual (+$150)</label>
+            </fieldset>
+
+            <label for="presupuestoFinal">Presupuesto Final:</label>
+            <input type="text" id="presupuestoFinal" name="presupuestoFinal" readonly>
+        </fieldset>
+
+        <fieldset>
+            <legend>Condiciones</legend>
+
+            <input type="checkbox" id="condiciones" required>
+            <label for="condiciones">Acepto las condiciones de privacidad</label>
+        </fieldset>
+
+        <button type="submit">Enviar</button>
+    </form>
+</main>
+
+<footer>
+    <div class="footer-redes">
+      <a href="https://facebook.com" target="_blank">Facebook</a> |
+      <a href="https://twitter.com" target="_blank">Twitter</a> |
+      <a href="https://instagram.com" target="_blank">Instagram</a>
+    </div>
+    <div class="footer-info">
+      <p>Dirección: Calle Aleatoria 123, Ciudad, País</p>
+      <p><a href="#">Aviso legal</a></p>
+    </div>
+    <p class="footer-copy">&copy; 2025 Mi Sitio Web</p>
+  </footer>  
+
+<script src="/js/presupuesto.js"></script>
+</body>
+</html>
