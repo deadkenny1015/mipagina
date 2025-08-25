@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-  fetch('../js/json.galeria.json')
+  fetch('../js/json/galeria.json')
     .then(response => response.json())
     .then(data => {
       const contenedor = document.getElementById('contenedor-galeria');
@@ -23,4 +23,5 @@ document.addEventListener('DOMContentLoaded', function () {
     })
     .catch(error => console.error('Error cargando la galería:', error));
 });
+
 
