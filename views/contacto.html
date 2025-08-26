@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacto</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <header>
+    <h1>Contacto</h1>
+    <nav>
+      <a href="../index.html">Inicio</a>
+      <a href="galeria.html">Galería</a>
+      <a href="presupuesto.html">Presupuesto</a>
+      <a href="contacto.html" class="active">Contacto</a>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>Ubicación de la Empresa</h2>
+      <div id="map" style="height: 400px;"></div>
+    </section>
+
+    <section>
+      <h2>Datos de contacto</h2>
+      <p><strong>Dirección:</strong> Calle Falsa 123, Ciudad aleatoria</p>
+      <p><strong>Teléfono:</strong> +52 123 456 7890</p>
+      <p><strong>Email:</strong> contactofalso@miempresa.com</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-redes">
+        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a> |
+        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i> Twitter</a> |
+        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+    </div>
+
+    <div class="footer-info">
+      <p>Dirección: Calle Aleatoria 123, Ciudad, País</p>
+      <p><a href="#">Aviso legal</a></p>
+    </div>
+    <p class="footer-copy">&copy; 2025 Mi Sitio Web</p>
+  </footer>
+
+  <script>
+  const empresa = [39.56939, 2.65024]; // Palma
+
+  const map = L.map('map').setView(empresa, 13);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors'
+  }).addTo(map);
+
+  L.marker(empresa).addTo(map)
+    .bindPopup('Aquí está la empresa')
+    .openPopup();
+
+  // Geolocalización del visitante
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(pos => {
+      const visitante = [pos.coords.latitude, pos.coords.longitude];
+
+      L.marker(visitante).addTo(map)
+        .bindPopup('Tu ubicación')
+        .openPopup();
+
+      // Llamada a OpenRouteService con tu API key
+      fetch('https://api.openrouteservice.org/v2/directions/driving-car', {
+        method: 'POST',
+        headers: {
+          'Authorization': 'eyJvcmciOiI1YjNjZTM1OTc4NTExMTAwMDFjZjYyNDgiLCJpZCI6ImJiNDI5YjdjYjYzMjRlZGM4MTAxZGMyY2Q3ZWI0NjJkIiwiaCI6Im11cm11cjY0In0=',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          coordinates: [visitante.slice().reverse(), empresa.slice().reverse()]
+        })
+      })
+      .then(res => res.json())
+      .then(data => {
+        const ruta = data.features[0].geometry.coordinates.map(c => c.reverse());
+        L.polyline(ruta, { color: 'blue' }).addTo(map);
+        map.fitBounds(ruta);
+      })
+      .catch(err => console.error('Error al obtener la ruta:', err));
+    }, err => {
+      console.warn('No se pudo obtener la ubicación del visitante:', err.message);
+    });
+  } else {
+    alert('Tu navegador no permite geolocalización.');
+  }
+</script>
+</body>
+</html>
