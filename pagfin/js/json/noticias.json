@@ -1,0 +1,16 @@
+[
+    {
+      "titulo": "Lanzamiento de la nueva app",
+      "contenido": "Hoy lanzamos nuestra nueva aplicación para Android y iOS.",
+      "fecha": "2025-04-26",
+      "imagen": "imagenes/nueva.jpeg"
+    },
+    {
+      "titulo": "Actualización del sitio web",
+      "contenido": "Hemos mejorado el diseño de nuestro sitio web para una mejor experiencia.",
+      "fecha": "2025-04-20",
+      "imagen": "imagenes/actualizacion.jpeg"
+    }
+  ]
+
+   
